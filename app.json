@@ -29,6 +29,9 @@
       "eas": {
         "projectId": "2bceb966-08c9-4a0d-a4c9-3788a47eb446"
       }
+    },
+    "android": {
+      "package": "com.clientserver.brandpeek"
     }
   }
 }

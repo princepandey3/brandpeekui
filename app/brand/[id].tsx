@@ -37,7 +37,8 @@ export default function BrandDetailScreen() {
     try {
       setLoading(true);
       setError(null);
-      const brandData = await brandService.getBrandById(id!);
+      const brandData = await brandService.getBrandById(Number(id));
+
       setBrand(brandData);
     } catch (err) {
       setError('Failed to load brand details. Please try again.');
@@ -60,18 +61,24 @@ export default function BrandDetailScreen() {
   }
 
   if (!brand) {
-    return <ErrorView message="Brand not found" onRetry={() => router.back()} />;
+    return (
+      <ErrorView message="Brand not found" onRetry={() => router.back()} />
+    );
   }
 
   return (
-    <LinearGradient colors={['#1a1a2e', '#16213e', '#0f4c75']} style={styles.container}>
+    <LinearGradient
+      colors={['#1a1a2e', '#16213e', '#0f4c75']}
+      style={styles.container}
+    >
       <SafeAreaView style={styles.safeArea}>
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity
             style={styles.backButton}
             onPress={() => router.back()}
-            activeOpacity={0.7}>
+            activeOpacity={0.7}
+          >
             <ChevronLeft size={24} color="#ffffff" />
           </TouchableOpacity>
           <View style={styles.headerActions}>
@@ -84,7 +91,8 @@ export default function BrandDetailScreen() {
         <ScrollView
           style={styles.content}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.scrollContent}>
+          contentContainerStyle={styles.scrollContent}
+        >
           {/* Brand Logo & Name */}
           <View style={styles.brandHeader}>
             <View style={styles.logoContainer}>
@@ -124,7 +132,9 @@ export default function BrandDetailScreen() {
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Latest Campaign</Text>
               <View style={styles.campaignCard}>
-                <Text style={styles.campaignTitle}>{brand.recentCampaign.title}</Text>
+                <Text style={styles.campaignTitle}>
+                  {brand.recentCampaign.title}
+                </Text>
                 <Text style={styles.campaignDescription}>
                   {brand.recentCampaign.description}
                 </Text>
